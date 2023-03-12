@@ -1,0 +1,23 @@
+{
+  "name": "Graphql",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Internal access": {
+        "url": "http://localhost:5000/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      },
+      "Authorised user": {
+        "url": "http://localhost:5000/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYXV0aGVudGljYXRlZCIsImV4cCI6MTY3ODYzODMyOSwidXNlcl9pZCI6MywiaXNfYWRtaW4iOmZhbHNlLCJ1c2VybmFtZSI6Imd1ZXN0IiwiaWF0IjoxNjc4NjMyMzI5LCJhdWQiOiJwb3N0Z3JhcGhpbGUiLCJpc3MiOiJwb3N0Z3JhcGhpbGUifQ.LuOrwa-rHYUyuPEnlBbuo9Wpa0ejPpGUnzkV0TPAQSk"
+        },
+        "introspect": false
+      }
+    }
+  }
+}

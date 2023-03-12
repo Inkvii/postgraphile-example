@@ -20,11 +20,11 @@ export const postgraphileOptions = {
   },
   enableQueryBatching: true,
   legacyRelations: "omit",
-  pgSettings(req) {
-    /* TODO */
-  },
   enableCors: true,
   graphileBuildOptions: {
     connectionFilterAllowNullInput: true,
   },
+  pgSchemas: ["public"],
+  jwtSecret: "my-super-secret",
+  jwtPgTypeIdentifier: "security.jwt_token",
 }

@@ -1,0 +1,14 @@
+query GetPets {
+    handler(id: 3) {
+        id
+        name
+    }
+}
+
+query Pets {
+    pets {
+        nodes {
+            name
+        }
+    }
+}

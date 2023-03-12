@@ -1,6 +1,6 @@
 import { postgraphile } from "postgraphile"
 import dotenv from "dotenv"
-import { postgraphileOptions } from "./postgraphileOptions.js"
+import { postgraphileOptions } from "./postgraphileOptions.mjs"
 import express from "express"
 
 dotenv.config()

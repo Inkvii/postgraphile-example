@@ -1,0 +1,5 @@
+mutation {
+    authenticate(input: { username: "guest", password: "asd123ASD!" }) {
+        jwtToken
+    }
+}
