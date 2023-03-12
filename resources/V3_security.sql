@@ -1,14 +1,8 @@
 begin;
-create extension pgcrypto;
-
-create schema if not exists security;
-
-create role unauthenticated;
-create role authenticated;
-create role admin;
+create extension pgcrypto with schema public;
 
 
-create type security.jwt_token as
+create type registration.jwt_token as
 (
     role     text,
     exp      integer,
@@ -17,6 +11,7 @@ create type security.jwt_token as
     username varchar
 );
 
+create schema if not exists security;
 create table security.person_account
 (
     id            serial primary key,
@@ -26,10 +21,10 @@ create table security.person_account
     is_admin      boolean default false
 );
 
-create or replace function public.authenticate(
+create or replace function registration.authenticate(
     username varchar,
     password varchar
-) returns security.jwt_token as
+) returns registration.jwt_token as
 $$
 declare
     account  security.person_account;
@@ -54,7 +49,7 @@ begin
                 account.id,
                 account.is_admin,
                 account.username
-            )::security.jwt_token;
+            )::registration.jwt_token;
     else
         return null;
     end if;
@@ -62,7 +57,7 @@ end;
 $$ language plpgsql strict
                     security definer;
 
-create or replace function public.register(var_username varchar, var_password varchar) returns void as
+create or replace function registration.register(var_username varchar, var_password varchar) returns void as
 $$
 declare
     salt varchar;
@@ -71,27 +66,6 @@ begin
     insert into security.person_account(username, password_hash, salt) VALUES (var_username, crypt(var_password, salt), salt);
 end
 $$ language plpgsql;
-
-create or replace function current_user_id() returns integer as
-$$
-begin
-    return coalesce(current_setting('jwt.claims.id', true)::integer, -1)::integer;
-end
-$$ language plpgsql;
-
-grant execute on all functions in schema security to unauthenticated;
-
-grant execute on all functions in schema security to authenticated;
-grant select on all tables in schema public to authenticated;
-revoke all ON store FROM authenticated;
-
-grant all on database example to admin;
-grant all on all tables in schema public to admin;
-
-
-alter table handler
-    enable row level security;
-create policy handler_policy on handler to authenticated using (id = current_setting('jwt.claims.user_id', true)::integer);
 
 commit;
 

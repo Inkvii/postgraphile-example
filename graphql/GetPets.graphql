@@ -1,3 +1,15 @@
+query UnauthenticatedViewOnPets {
+    pets {
+        nodes {
+            id
+            age
+            name
+            handlerId
+
+        }
+    }
+}
+
 query GetPets {
     handler(id: 3) {
         id

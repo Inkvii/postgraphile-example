@@ -3,7 +3,7 @@
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {
-      "Internal access": {
+      "Unauthenticated user": {
         "url": "http://localhost:5000/graphql",
         "headers": {
           "user-agent": "JS GraphQL"

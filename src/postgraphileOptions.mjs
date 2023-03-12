@@ -1,6 +1,7 @@
 import PgSimplifyInflectorPlugin from "@graphile-contrib/pg-simplify-inflector"
 import ConnectionFilterPlugin from "postgraphile-plugin-connection-filter"
 
+/**@type {import("postgraphile").PostGraphileOptions} */
 export const postgraphileOptions = {
   subscriptions: true,
   watchPg: true,
@@ -24,7 +25,8 @@ export const postgraphileOptions = {
   graphileBuildOptions: {
     connectionFilterAllowNullInput: true,
   },
-  pgSchemas: ["public"],
+  pgDefaultRole: "unauthenticated",
   jwtSecret: "my-super-secret",
-  jwtPgTypeIdentifier: "security.jwt_token",
+  // defines type that will be encoded to jwt on mutation response
+  jwtPgTypeIdentifier: "registration.jwt_token",
 }

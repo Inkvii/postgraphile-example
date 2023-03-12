@@ -1,4 +1,5 @@
 begin;
+create schema if not exists registration;
 
 create table if not exists handler
 (

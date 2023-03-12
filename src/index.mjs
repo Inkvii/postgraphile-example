@@ -5,7 +5,7 @@ import express from "express"
 
 dotenv.config()
 
-const middleware = postgraphile(process.env.DATABASE_URL, "public", postgraphileOptions)
+const middleware = postgraphile(process.env.DATABASE_URL, ["public", "registration"], postgraphileOptions)
 
 const app = express()
 
