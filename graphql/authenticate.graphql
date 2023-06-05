@@ -3,3 +3,9 @@ mutation {
         jwtToken
     }
 }
+
+mutation {
+    authenticate(input: {username: "admin", password: "asd123ASD!"}) {
+        jwtToken
+    }
+}
