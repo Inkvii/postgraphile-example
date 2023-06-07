@@ -1,10 +1,10 @@
-mutation {
+mutation AuthenticateAsGuest {
     authenticate(input: {username: "guest", password: "asd123ASD!"}) {
         jwtToken
     }
 }
 
-mutation {
+mutation AuthenticateAsAdmin {
     authenticate(input: {username: "admin", password: "asd123ASD!"}) {
         jwtToken
     }

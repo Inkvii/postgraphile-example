@@ -1,0 +1,14 @@
+schema: schema.graphql
+extensions:
+  endpoints:
+    Unauthenticated user:
+      url: http://localhost:5001/graphql
+      headers:
+        user-agent: JS GraphQL
+      introspect: false
+    Authorised user:
+      url: http://localhost:5001/graphql
+      headers:
+        user-agent: JS GraphQL
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYXV0aGVudGljYXRlZCIsImV4cCI6MTY4NjEyNzkxNywidXNlcl9pZCI6MiwiaXNfYWRtaW4iOmZhbHNlLCJ1c2VybmFtZSI6Imd1ZXN0IiwiaWF0IjoxNjg2MTIxOTE2LCJhdWQiOiJwb3N0Z3JhcGhpbGUiLCJpc3MiOiJwb3N0Z3JhcGhpbGUifQ.LLKL8bvNQWH_tATkTCM4tEMf1Xh-pPC_9sdHBxTsdbU
+      introspect: false

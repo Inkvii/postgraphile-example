@@ -10,13 +10,7 @@ query UnauthenticatedViewOnPets {
     }
 }
 
-query GetPets {
-    handler(id: 3) {
-        id
-        name
-    }
-}
-
+# Return pet names which is owned by the token bearer
 query Pets {
     pets {
         nodes {
@@ -25,7 +19,24 @@ query Pets {
     }
 }
 
-// only admin should be able to view stores
+# Will not return pet because guest is not the owner
+query GetPets {
+    handler(id: 3) {
+        id
+        name
+    }
+}
+
+# Using filter from the postraphile plugin
+query FilterThyPets($name: String) {
+    pets(filter: {name: {equalTo: $name}} ) {
+        nodes {
+            name
+        }
+    }
+}
+
+# only admin should be able to view stores
 query AdminOnlyStoresView {
 	stores {
     nodes {
